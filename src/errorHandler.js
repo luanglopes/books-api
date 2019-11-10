@@ -19,17 +19,16 @@ class ErrorHandler {
     const statusCode = formattedError.status || 500
     let errorMessage = formattedError.message || 'Internal server error'
 
-    if (statusCode === 500 && isProduction) {
-      // Don't return unhandled error messages in production
-      errorMessage = 'Internal server error'
-    }
-
-    if (!isProduction) {
-      // log complete error stack
-      console.error(formattedError)
-    } else {
-      // log only error message
-      console.error(formattedError.message)
+    if (statusCode === 500) {
+      if (isProduction) {
+        // Don't return unhandled error messages in production
+        errorMessage = 'Internal server error'
+        // log only error message
+        console.error(formattedError.message)
+      } else {
+        // log complete error stack
+        console.error(formattedError)
+      }
     }
 
     res.status(statusCode).json({ ...formattedError, message: errorMessage })

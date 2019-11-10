@@ -1,10 +1,15 @@
+require('dotenv').config({ path: `${process.env.NODE_ENV}.env` })
+
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 const morgan = require('morgan')
+const Knex = require('knex')
+const { Model, knexSnakeCaseMappers } = require('objection')
 
 const errorHandler = require('./errorHandler')
 const appRouter = require('./routes')
+const databaseConfig = require('./config/database')
 
 class App {
   constructor () {
@@ -12,6 +17,17 @@ class App {
 
     this.middlewares()
     this.routes()
+  }
+
+  database () {
+    const config = databaseConfig
+
+    const knex = Knex({
+      ...config,
+      ...knexSnakeCaseMappers()
+    })
+
+    Model.knex(knex)
   }
 
   middlewares () {
