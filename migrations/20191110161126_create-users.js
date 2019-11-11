@@ -8,7 +8,7 @@ exports.up = function (knex) {
     table.string('email').notNullable()
     table.string('password').notNullable()
     table.date('birthday').notNullable()
-    table.enu('role', roles).notNullable().defaultTo(defaultRole)
+    table.enu('role', Object.values(roles)).notNullable().defaultTo(defaultRole)
     table.unique('email')
     table.unique('phone')
     table.timestamps()
