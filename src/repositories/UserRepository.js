@@ -102,6 +102,22 @@ class UserRepository {
 
     return true
   }
+
+  async authenticate ({ email, password }) {
+    const user = await this.model.query().findOne({ email })
+
+    if (!user) {
+      return null
+    }
+
+    const isRightPassword = await user.comparePassword(password)
+
+    if (!isRightPassword) {
+      return null
+    }
+
+    return user.toJSON()
+  }
 }
 
 module.exports = UserRepository
