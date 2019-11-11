@@ -1,6 +1,8 @@
 const { Router } = require('express')
 
 const CategroyController = require('../controllers/CategoryController')
+const authMiddleware = require('../middlewares/authMiddleware')
+const roleMiddleware = require('../middlewares/roleMiddleware')
 
 class CategoryRouter {
   constructor () {
@@ -13,9 +15,9 @@ class CategoryRouter {
   routes () {
     this.router.get('/', this.controller.list)
     this.router.get('/:id', this.controller.getOne)
-    this.router.post('/', this.controller.create)
-    this.router.put('/:id', this.controller.update)
-    this.router.delete('/:id', this.controller.delete)
+    this.router.post('/', authMiddleware, roleMiddleware('admin', 'librarian'), this.controller.create)
+    this.router.put('/:id', authMiddleware, roleMiddleware('admin', 'librarian'), this.controller.update)
+    this.router.delete('/:id', authMiddleware, roleMiddleware('admin', 'librarian'), this.controller.delete)
     this.router.get('/:id/books', this.controller.listBooks)
   }
 }

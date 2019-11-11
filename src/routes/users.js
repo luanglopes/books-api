@@ -1,5 +1,8 @@
-const UserController = require('../controllers/UserController')
 const { Router } = require('express')
+
+const UserController = require('../controllers/UserController')
+const authMiddleware = require('../middlewares/authMiddleware')
+const roleMiddleware = require('../middlewares/roleMiddleware')
 
 class UserRouter {
   constructor () {
@@ -12,12 +15,12 @@ class UserRouter {
   routes () {
     this.router.get('/', this.controller.list)
     this.router.get('/:id', this.controller.getOne)
-    this.router.post('/', this.controller.create)
-    this.router.put('/:id', this.controller.update)
-    this.router.delete('/:id', this.controller.delete)
-    this.router.get('/:id/favorites', this.controller.listFavoriteBooks)
-    this.router.post('/:id/favorites', this.controller.addFavoriteBook)
-    this.router.delete('/:id/favorites/:bookId', this.controller.removeFavoriteBook)
+    this.router.post('/', authMiddleware, roleMiddleware('admin'), this.controller.create)
+    this.router.put('/:id', authMiddleware, roleMiddleware('admin'), this.controller.update)
+    this.router.delete('/:id', authMiddleware, roleMiddleware('admin'), this.controller.delete)
+    this.router.get('/:id/favorites', authMiddleware, this.controller.listFavoriteBooks)
+    this.router.post('/:id/favorites', authMiddleware, this.controller.addFavoriteBook)
+    this.router.delete('/:id/favorites/:bookId', authMiddleware, this.controller.removeFavoriteBook)
   }
 }
 
