@@ -13,7 +13,7 @@ class ErrorHandler {
     next(new createError.NotFound())
   }
 
-  static handle (error, _req, res, _next) {
+  static globalHandler (error, _req, res, _next) {
     const formattedError = ErrorHandler.format(error)
 
     const statusCode = formattedError.status || 500

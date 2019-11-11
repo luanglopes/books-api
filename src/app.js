@@ -15,12 +15,17 @@ class App {
   constructor () {
     this.express = express()
 
+    this.database()
     this.middlewares()
     this.routes()
   }
 
   database () {
     const config = databaseConfig
+
+    if (config.client !== 'sqlite3') {
+      delete config.connection.filename
+    }
 
     const knex = Knex({
       ...config,
@@ -41,7 +46,7 @@ class App {
   routes () {
     this.express.use(appRouter)
     this.express.use(errorHandler.notFoundHandler)
-    this.express.use(errorHandler.handle)
+    this.express.use(errorHandler.globalHandler)
   }
 }
 

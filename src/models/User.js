@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt')
+
 const BaseModel = require('./BaseModel')
 const unique = require('objection-unique')({
   fields: ['email', 'phone']
@@ -15,7 +17,7 @@ class User extends unique(BaseModel) {
   static get jsonSchema () {
     return {
       type: 'object',
-      required: ['name', 'email', 'birthday'],
+      required: ['name', 'email', 'birthday', 'phone'],
       properties: {
         id: { type: 'integer' },
         name: { type: 'string', minLength: 3, maxLength: 255 },
@@ -37,7 +39,7 @@ class User extends unique(BaseModel) {
           from: 'users.id',
           through: {
             from: 'users_favorite_books.userId',
-            to: 'user_favorite_books.bookId'
+            to: 'users_favorite_books.bookId'
           },
           to: 'books.id'
         }
@@ -51,6 +53,33 @@ class User extends unique(BaseModel) {
     // const ageDifMs = Date.now() - birthdayDate.getTime()
     // const ageDate = new Date(ageDifMs)
     return 10 // Math.abs(ageDate.getUTCFullYear() - 1970)
+  }
+
+  async hashPassword (password) {
+    const rounds = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(password, rounds)
+
+    return hash
+  }
+
+  async comparePassword (password) {
+    const isPasswordRight = await bcrypt.compare(this.password, password)
+
+    return isPasswordRight
+  }
+
+  async $beforeInsert (queryContext) {
+    await super.$beforeInsert(queryContext)
+
+    this.password = await this.hashPassword(this.password)
+  }
+
+  async $beforeUpdate (opt, queryContext) {
+    await super.$beforeUpdate(opt, queryContext)
+
+    if (this.password) {
+      this.password = await this.hashPassword(this.password)
+    }
   }
 }
 
