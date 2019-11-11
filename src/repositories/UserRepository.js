@@ -64,7 +64,7 @@ class UserRepository {
       return null
     }
 
-    const query = user.$relatedQuery('favoriteBooks')
+    const query = user.$relatedQuery('favoriteBooks').eager('category')
 
     if (pageSize && pageNumber) {
       query.page(pageNumber - 1, pageSize)
