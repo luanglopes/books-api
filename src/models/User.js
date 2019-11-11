@@ -39,7 +39,7 @@ class User extends unique(BaseModel) {
           from: 'users.id',
           through: {
             from: 'users_favorite_books.userId',
-            to: 'user_favorite_books.bookId'
+            to: 'users_favorite_books.bookId'
           },
           to: 'books.id'
         }

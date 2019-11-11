@@ -66,7 +66,7 @@ class UserRepository {
       query.page(pageNumber - 1, pageSize)
     }
 
-    const favoriteBooks = await query
+    const { results: favoriteBooks } = await query
 
     return favoriteBooks.map(fvBk => fvBk.toJSON())
   }
