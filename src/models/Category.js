@@ -5,6 +5,10 @@ class Catgeory extends BaseModel {
     return 'categories'
   }
 
+  static get timestamps () {
+    return false
+  }
+
   static get jsonSchema () {
     return {
       type: 'object',

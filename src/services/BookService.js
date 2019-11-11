@@ -2,7 +2,7 @@ const createError = require('http-errors')
 
 class BookService {
   /**
-   * @param {typeof import('../repositories/BookRepository')} UserRepository
+   * @param {typeof import('../repositories/BookRepository')} BookRepository
    */
   constructor (BookRepository, BookModel) {
     this.bookRepository = new BookRepository(BookModel)
@@ -47,7 +47,7 @@ class BookService {
   }
 
   async delete ({ id }) {
-    const parsedId = parseInt(id)
+    const parsedId = parseInt(id, 10)
     await this.bookRepository.delete({ id: parsedId })
   }
 }

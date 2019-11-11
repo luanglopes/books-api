@@ -47,7 +47,7 @@ class UserService {
   }
 
   async delete ({ id }) {
-    const parsedId = parseInt(id)
+    const parsedId = parseInt(id, 10)
     await this.userRepository.delete({ id: parsedId })
   }
 
