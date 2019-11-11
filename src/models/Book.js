@@ -25,7 +25,7 @@ class Book extends unique(BaseModel) {
     const Category = require('./Category')
 
     return {
-      parent: {
+      category: {
         relation: BaseModel.BelongsToOneRelation,
         modelClass: Category,
         join: {
