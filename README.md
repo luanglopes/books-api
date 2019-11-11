@@ -20,7 +20,7 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 
 ### Usuário Administrador:
 
-Ao executar todos os passos da seção Getting Start será criado o seguinte usuário:
+Ao executar todos os passos da seção Getting Started será criado o seguinte usuário:
 
 - **Email:** admin@example.com
 - **Senha:** 123456
