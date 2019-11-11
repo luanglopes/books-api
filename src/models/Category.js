@@ -2,7 +2,7 @@ const BaseModel = require('./BaseModel')
 
 class Catgeory extends BaseModel {
   static get tableName () {
-    return 'catgeories'
+    return 'categories'
   }
 
   static get jsonSchema () {
