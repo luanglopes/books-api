@@ -63,7 +63,7 @@ class User extends unique(BaseModel) {
   }
 
   async comparePassword (password) {
-    const isPasswordRight = await bcrypt.compare(this.password, password)
+    const isPasswordRight = await bcrypt.compare(password, this.password)
 
     return isPasswordRight
   }
