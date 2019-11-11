@@ -5,7 +5,7 @@ module.exports = {
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    filename: process.env.DB_FILE
+    filename: process.env.DB_FILE,
   },
-  useNullAsDefault: process.env.DB_DIALECT !== 'sqlite3'
+  useNullAsDefault: process.env.DB_DIALECT !== 'sqlite3',
 }

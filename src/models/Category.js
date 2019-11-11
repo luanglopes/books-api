@@ -15,8 +15,8 @@ class Catgeory extends BaseModel {
       requied: ['name'],
       properties: {
         id: { type: 'number' },
-        name: { type: 'string', minLength: 1, maxLength: 255 }
-      }
+        name: { type: 'string', minLength: 1, maxLength: 255 },
+      },
     }
   }
 
@@ -29,9 +29,9 @@ class Catgeory extends BaseModel {
         modelClass: Book,
         join: {
           from: 'categories.id',
-          to: 'books.categoryId'
-        }
-      }
+          to: 'books.categoryId',
+        },
+      },
     }
   }
 }

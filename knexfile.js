@@ -4,12 +4,12 @@ const databaseConfig = require('./src/config/database')
 
 module.exports = {
   development: {
-    ...databaseConfig
+    ...databaseConfig,
   },
   test: {
-    ...databaseConfig
+    ...databaseConfig,
   },
   production: {
-    ...databaseConfig
-  }
+    ...databaseConfig,
+  },
 }

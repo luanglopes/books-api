@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 
 const BaseModel = require('./BaseModel')
 const unique = require('objection-unique')({
-  fields: ['email', 'phone']
+  fields: ['email', 'phone'],
 })
 
 class User extends unique(BaseModel) {
@@ -23,8 +23,8 @@ class User extends unique(BaseModel) {
         name: { type: 'string', minLength: 3, maxLength: 255 },
         email: { type: 'string', minLength: 3, maxLength: 255 },
         birthday: { type: 'date' },
-        password: { type: 'string', minLength: 6 }
-      }
+        password: { type: 'string', minLength: 6 },
+      },
     }
   }
 
@@ -39,11 +39,11 @@ class User extends unique(BaseModel) {
           from: 'users.id',
           through: {
             from: 'users_favorite_books.userId',
-            to: 'users_favorite_books.bookId'
+            to: 'users_favorite_books.bookId',
           },
-          to: 'books.id'
-        }
-      }
+          to: 'books.id',
+        },
+      },
     }
   }
 
