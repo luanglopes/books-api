@@ -12,7 +12,11 @@ class UserRepository {
       query.page(pageNumber - 1, pageSize)
     }
 
-    const { results: users } = await query
+    let users = await query
+
+    if (!Array.isArray(users)) {
+      users = users.results
+    }
 
     return users.map(usr => usr.toJSON())
   }
@@ -66,7 +70,11 @@ class UserRepository {
       query.page(pageNumber - 1, pageSize)
     }
 
-    const { results: favoriteBooks } = await query
+    let favoriteBooks = await query
+
+    if (!Array.isArray(favoriteBooks)) {
+      favoriteBooks = favoriteBooks.results
+    }
 
     return favoriteBooks.map(fvBk => fvBk.toJSON())
   }
