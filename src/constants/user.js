@@ -1,4 +1,4 @@
 module.exports = {
-  roles: ['admin', 'librarian', 'user'],
-  defaultRole: 'user'
+  roles: { admin: 'admin', librarian: 'librarian', user: 'user' },
+  defaultRole: 'user',
 }

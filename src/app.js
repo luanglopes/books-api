@@ -29,7 +29,7 @@ class App {
 
     const knex = Knex({
       ...config,
-      ...knexSnakeCaseMappers()
+      ...knexSnakeCaseMappers(),
     })
 
     Model.knex(knex)

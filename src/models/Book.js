@@ -1,6 +1,6 @@
 const BaseModel = require('./BaseModel')
 const unique = require('objection-unique')({
-  fields: ['ISBN']
+  fields: ['ISBN'],
 })
 
 class Book extends unique(BaseModel) {
@@ -16,8 +16,8 @@ class Book extends unique(BaseModel) {
         id: { type: 'integer' },
         title: { type: 'string', minLength: 3, maxLength: 255 },
         ISBN: { type: 'string', maxLength: 255 },
-        year: { type: 'string', minLength: 4, maxLength: 4 }
-      }
+        year: { type: 'string', minLength: 4, maxLength: 4 },
+      },
     }
   }
 
@@ -30,9 +30,9 @@ class Book extends unique(BaseModel) {
         modelClass: Category,
         join: {
           from: 'books.categoryId',
-          to: 'categories.id'
-        }
-      }
+          to: 'categories.id',
+        },
+      },
     }
   }
 }
