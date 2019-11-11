@@ -1,4 +1,4 @@
-require('dotenv').config({ path: `${process.env.NODE_ENV || ''}.env` })
+require('dotenv').config()
 
 const express = require('express')
 const cors = require('cors')
@@ -22,10 +22,6 @@ class App {
 
   database () {
     const config = databaseConfig
-
-    if (config.client !== 'sqlite3') {
-      delete config.connection.filename
-    }
 
     const knex = Knex({
       ...config,

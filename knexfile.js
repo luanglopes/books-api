@@ -1,12 +1,9 @@
-require('dotenv').config({ path: `${process.env.NODE_ENV || ''}.env` })
+require('dotenv').config()
 
 const databaseConfig = require('./src/config/database')
 
 module.exports = {
   development: {
-    ...databaseConfig,
-  },
-  test: {
     ...databaseConfig,
   },
   production: {
