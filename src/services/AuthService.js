@@ -5,9 +5,9 @@ class AuthService {
   /**
    * @param {typeof import('../repositories/UserRepository')} UserRepository
    */
-  constructor (UserRepository, UserModel, secret) {
+  constructor (UserRepository, UserModel) {
     this.userRepository = new UserRepository(UserModel)
-    this.secret = secret
+    this.secret = process.env.SECRET
   }
 
   _generateToken (payload) {

@@ -6,7 +6,7 @@ const AuthService = require('../services/AuthService')
 
 class BookController {
   constructor () {
-    this.authService = new AuthService(UserRepository, User, process.env.SECRET)
+    this.authService = new AuthService(UserRepository, User)
 
     autoBind(this)
   }
