@@ -8,9 +8,9 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 - NPM **v6.10.3** ou mais recente (é instalado juntamente com o NodeJS);
 - MySQL **v5.7** ([Downloads](https://dev.mysql.com/downloads/mysql/));
 
-## Geting Started
+## Getting Started
 
-- Clone o repositório em sua máquina;
+- Clone o repositório em sua máquina utlizando o comando `git clone https://github.com/luanglopes/books-api.git` ou [baixe o .zip](https://github.com/luanglopes/books-api/archive/master.zip);
 - Na raiz do projeto execute o comando `npm i` para instalar as dependências;
 - Crie um arquivo `.env` seguindo a estrutura do arquivo `example.env` e coloque as variáveis do seu ambiente;
   - Lembre-se de criar a base de dados da aplicação no seu banco de dados
@@ -31,7 +31,7 @@ Ao executar todos os passos da seção Getting Start será criado o seguinte usu
 - **Produção** Execute o comando `npm start`;
   - Recomendo utilizar o [PM2](https://pm2.keymetrics.io/) para execução real em produção.
 
-**Obs.:** A API estará diposnível em `http://localhost:${PORT}` `PORT`
+**Obs.:** A API estará diposnível em `http://localhost:PORT` sendo `PORT` a porta que você definiu no arquivo `.env`
 
 ## Rotas
 
