@@ -17,7 +17,7 @@ class User extends unique(BaseModel) {
   static get jsonSchema () {
     return {
       type: 'object',
-      required: ['name', 'email', 'birthday'],
+      required: ['name', 'email', 'birthday', 'phone'],
       properties: {
         id: { type: 'integer' },
         name: { type: 'string', minLength: 3, maxLength: 255 },

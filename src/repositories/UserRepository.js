@@ -12,7 +12,7 @@ class UserRepository {
       query.page(pageNumber - 1, pageSize)
     }
 
-    const users = await query
+    const { results: users } = await query
 
     return users.map(usr => usr.toJSON())
   }
@@ -32,7 +32,7 @@ class UserRepository {
       throw new ValidationError({ type: 'ModelValidation', data: { password: [{ message: 'password is required', keyword: 'required' }] } })
     }
 
-    const user = await this.model.query().insert(data)
+    const user = await this.model.query().insertAndFetch(data)
 
     return user.toJSON()
   }
