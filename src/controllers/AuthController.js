@@ -1,12 +1,13 @@
+'use strict'
 const autoBind = require('auto-bind')
 
-const User = require('../models/User')
-const UserRepository = require('../repositories/UserRepository')
-const AuthService = require('../services/AuthService')
-
-class BookController {
-  constructor () {
-    this.authService = new AuthService(UserRepository, User)
+class AuthController {
+  /**
+   *
+   * @param {import('../services/AuthService')} authService
+   */
+  constructor (authService) {
+    this.authService = authService
 
     autoBind(this)
   }
@@ -36,4 +37,4 @@ class BookController {
   }
 }
 
-module.exports = BookController
+module.exports = AuthController
