@@ -1,12 +1,12 @@
+'use strict'
 const autoBind = require('auto-bind')
 
-const Book = require('../models/Book')
-const BookRepository = require('../repositories/BookRepository')
-const BookService = require('../services/BookService')
-
 class BookController {
-  constructor () {
-    this.bookService = new BookService(BookRepository, Book)
+  /**
+   * @param {import('../services/BookService')} bookService
+   */
+  constructor (bookService) {
+    this.bookService = bookService
 
     autoBind(this)
   }

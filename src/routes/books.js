@@ -1,5 +1,9 @@
+'use strict'
 const { Router } = require('express')
 
+const Book = require('../models/Book')
+const BookRepository = require('../repositories/BookRepository')
+const BookService = require('../services/BookService')
 const BookController = require('../controllers/BookController')
 const authMiddleware = require('../middlewares/authMiddleware')
 const roleMiddleware = require('../middlewares/roleMiddleware')
@@ -8,7 +12,10 @@ const { roles } = require('../constants/user')
 class BookRouter {
   constructor () {
     this.router = new Router()
-    this.controller = new BookController()
+
+    const bookRepository = new BookRepository(Book)
+    const bookService = new BookService(bookRepository)
+    this.controller = new BookController(bookService)
 
     this.routes()
   }

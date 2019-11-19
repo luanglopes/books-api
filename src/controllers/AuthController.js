@@ -3,7 +3,6 @@ const autoBind = require('auto-bind')
 
 class AuthController {
   /**
-   *
    * @param {import('../services/AuthService')} authService
    */
   constructor (authService) {

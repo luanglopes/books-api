@@ -1,11 +1,12 @@
-const createError = require('http-errors')
+'use strict'
+const httpErrors = require('http-errors')
 
 class BookService {
   /**
-   * @param {typeof import('../repositories/BookRepository')} BookRepository
+   * @param {import('../repositories/BookRepository')} bookRepository
    */
-  constructor (BookRepository, BookModel) {
-    this.bookRepository = new BookRepository(BookModel)
+  constructor (bookRepository) {
+    this.bookRepository = bookRepository
   }
 
   async list ({ pageSize, pageNumber }) {
@@ -23,7 +24,7 @@ class BookService {
     const book = await this.bookRepository.getOne({ id: parsedId })
 
     if (book === null) {
-      throw new createError.NotFound('Book Not Found')
+      throw new httpErrors.NotFound('Book Not Found')
     }
 
     return book
@@ -40,7 +41,7 @@ class BookService {
     const book = await this.bookRepository.update({ id: parsedId, data })
 
     if (book === null) {
-      throw new createError.NotFound('Book Not Found')
+      throw new httpErrors.NotFound('Book Not Found')
     }
 
     return book
