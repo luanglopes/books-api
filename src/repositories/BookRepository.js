@@ -1,5 +1,3 @@
-'use strict'
-
 class BookRepository {
   constructor (BookModel) {
     this.model = BookModel

@@ -1,3 +1,4 @@
+
 const { ValidationError } = require('objection')
 
 class UserRepository {

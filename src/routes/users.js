@@ -1,5 +1,9 @@
+
 const { Router } = require('express')
 
+const User = require('../models/User')
+const UserRepository = require('../repositories/UserRepository')
+const UserService = require('../services/UserService')
 const UserController = require('../controllers/UserController')
 const authMiddleware = require('../middlewares/authMiddleware')
 const roleMiddleware = require('../middlewares/roleMiddleware')
@@ -8,7 +12,10 @@ const { roles } = require('../constants/user')
 class UserRouter {
   constructor () {
     this.router = new Router()
-    this.controller = new UserController()
+
+    const userRepository = new UserRepository(User)
+    const usersService = new UserService(userRepository)
+    this.controller = new UserController(usersService)
 
     this.routes()
   }

@@ -1,4 +1,4 @@
-'use strict'
+
 const autoBind = require('auto-bind')
 
 class AuthController {

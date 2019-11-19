@@ -1,12 +1,12 @@
+
 const autoBind = require('auto-bind')
 
-const User = require('../models/User')
-const UserRepository = require('../repositories/UserRepository')
-const UserService = require('../services/UserService')
-
 class UserController {
-  constructor () {
-    this.userService = new UserService(UserRepository, User)
+  /**
+   * @param {import('../services/UserService')} userService
+   */
+  constructor (userService) {
+    this.userService = userService
 
     autoBind(this)
   }
