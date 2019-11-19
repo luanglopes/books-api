@@ -2,10 +2,10 @@ const createError = require('http-errors')
 
 class CategoryService {
   /**
-   * @param {typeof import('../repositories/CategoryRepository')} CategoryRepository
+   * @param {import('../repositories/CategoryRepository')} categoryRepository
    */
-  constructor (CategoryRepository, CategoryModel) {
-    this.categoryRepository = new CategoryRepository(CategoryModel)
+  constructor (categoryRepository) {
+    this.categoryRepository = categoryRepository
   }
 
   async list ({ pageSize, pageNumber }) {
