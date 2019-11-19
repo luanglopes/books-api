@@ -3,7 +3,7 @@ const { DBErrors } = require('objection-db-errors')
 const visibilityPlugin = require('objection-visibility').default
 const dayjs = require('dayjs')
 
-module.exports = class BaseModel extends visibilityPlugin(DBErrors(Model)) {
+class BaseModel extends visibilityPlugin(DBErrors(Model)) {
   static get timestamps () {
     return true
   }
@@ -27,3 +27,5 @@ module.exports = class BaseModel extends visibilityPlugin(DBErrors(Model)) {
     delete this.createdAt
   }
 }
+
+module.exports = BaseModel
