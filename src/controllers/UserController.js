@@ -1,4 +1,3 @@
-
 const autoBind = require('auto-bind')
 
 class UserController {

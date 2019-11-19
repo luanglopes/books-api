@@ -1,4 +1,3 @@
-
 const httpErrors = require('http-errors')
 
 class BookService {
