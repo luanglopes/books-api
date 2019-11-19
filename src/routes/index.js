@@ -1,18 +1,28 @@
+
 const { Router } = require('express')
 
-const router = Router()
 const userRoutes = require('./users')
 const bookRoutes = require('./books')
 const categoryRoutes = require('./categories')
 const authRoutes = require('./auth')
 
-router.get('/', (_req, res) => {
-  res.json({ message: 'Hello' })
-})
+class AppRouter {
+  constructor () {
+    this.router = new Router()
 
-router.use('/users', userRoutes)
-router.use('/books', bookRoutes)
-router.use('/categories', categoryRoutes)
-router.use('/auth', authRoutes)
+    this.registerRoutes()
+  }
 
-module.exports = router
+  registerRoutes () {
+    this.router.get('/', (_req, res) => {
+      res.json({ message: 'Hello' })
+    })
+
+    this.router.use('/users', userRoutes)
+    this.router.use('/books', bookRoutes)
+    this.router.use('/categories', categoryRoutes)
+    this.router.use('/auth', authRoutes)
+  }
+}
+
+module.exports = new AppRouter().router

@@ -2,10 +2,10 @@ const createError = require('http-errors')
 
 class UserService {
   /**
-   * @param {typeof import('../repositories/UserRepository')} UserRepository
+   * @param {import('../repositories/UserRepository')} userRepository
    */
-  constructor (UserRepository, UserModel) {
-    this.userRepository = new UserRepository(UserModel)
+  constructor (userRepository) {
+    this.userRepository = userRepository
   }
 
   async list ({ pageSize, pageNumber }) {

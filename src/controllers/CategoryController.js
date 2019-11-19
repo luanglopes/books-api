@@ -1,12 +1,11 @@
 const autoBind = require('auto-bind')
 
-const Category = require('../models/Category')
-const CategoryRepository = require('../repositories/CategoryRepository')
-const CategoryService = require('../services/CategoryService')
-
 class CategoryController {
-  constructor () {
-    this.categoryService = new CategoryService(CategoryRepository, Category)
+  /**
+   * @param {import('../services/CategoryService')} categoryService
+   */
+  constructor (categoryService) {
+    this.categoryService = categoryService
 
     autoBind(this)
   }

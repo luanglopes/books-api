@@ -1,5 +1,8 @@
 const { Router } = require('express')
 
+const Category = require('../models/Category')
+const CategoryRepository = require('../repositories/CategoryRepository')
+const CategoryService = require('../services/CategoryService')
 const CategroyController = require('../controllers/CategoryController')
 const authMiddleware = require('../middlewares/authMiddleware')
 const roleMiddleware = require('../middlewares/roleMiddleware')
@@ -8,7 +11,10 @@ const { roles } = require('../constants/user')
 class CategoryRouter {
   constructor () {
     this.router = new Router()
-    this.controller = new CategroyController()
+
+    const categoryRepository = new CategoryRepository(Category)
+    const categoryService = new CategoryService(categoryRepository)
+    this.controller = new CategroyController(categoryService)
 
     this.routes()
   }

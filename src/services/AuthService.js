@@ -1,12 +1,12 @@
-const createError = require('http-errors')
+const httpErrors = require('http-errors')
 const jwt = require('jsonwebtoken')
 
 class AuthService {
   /**
-   * @param {typeof import('../repositories/UserRepository')} UserRepository
+   * @param {import('../repositories/UserRepository')} userRepository
    */
-  constructor (UserRepository, UserModel) {
-    this.userRepository = new UserRepository(UserModel)
+  constructor (userRepository) {
+    this.userRepository = userRepository
     this.secret = process.env.SECRET
   }
 
@@ -28,7 +28,7 @@ class AuthService {
     const user = await this.userRepository.authenticate({ email, password })
 
     if (user === null) {
-      throw new createError.BadRequest('Email or password incorrect')
+      throw new httpErrors.BadRequest('Email or password incorrect')
     }
 
     const token = this._authenticate(user)
@@ -38,7 +38,7 @@ class AuthService {
 
   async verifyToken ({ token }) {
     if (!token) {
-      throw new createError.Unauthorized('Token not provided')
+      throw new httpErrors.Unauthorized('Token not provided')
     }
 
     try {
@@ -48,7 +48,7 @@ class AuthService {
 
       return { data: authData, user }
     } catch (error) {
-      throw new createError.Unauthorized('Invalid Token')
+      throw new httpErrors.Unauthorized('Invalid Token')
     }
   }
 }
