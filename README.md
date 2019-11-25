@@ -40,3 +40,7 @@ Dentro da raiz do projeto existe um arquivo chamado `postman_collection.json`, e
 [Baixar Postman](https://www.getpostman.com/downloads/)
 
 [Tutoriais do Postman](https://www.getpostman.com/resources/videos-tutorials/)
+
+## Docker
+
+Na raiz do projeto existe um arquivo de configuração do docker que pode ser utlizado para montar uma imagem com NodeJS para executar a aplicação em um container, para isso execute o comando `docker build -t <nome_da_nova_iamgem> .` na raiz do projeto.
