@@ -3,7 +3,7 @@ const UserRepository = require('../repositories/UserRepository')
 const AuthService = require('../services/AuthService')
 const authHelpers = require('../helpers/auth')
 
-const authService = new AuthService(UserRepository, User)
+const authService = new AuthService(new UserRepository(User))
 
 module.exports = async (req, _res, next) => {
   try {
