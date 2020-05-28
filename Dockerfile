@@ -11,9 +11,14 @@ RUN npm i --only=prod
 # Copy app files
 COPY src src
 COPY .env .env
+COPY ormconfig.json ormconfig.json
+COPY tsconfig.json tsconfig.json
+
+# Build
+RUN npm run build
 
 # Exposes container port 3000
 EXPOSE 3000
 
 # Run application
-CMD ["node", "src/server.js"]
+CMD ["npm", "start"]
