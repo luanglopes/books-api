@@ -1,12 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm'
-
-import Category from './Category'
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 @Entity('books')
 export default class Book {
@@ -22,8 +14,4 @@ export default class Book {
   @Column()
   // eslint-disable-next-line @typescript-eslint/naming-convention
   ISBN: string
-
-  @ManyToMany(() => Category)
-  @JoinTable()
-  categories: Array<Category>
 }
