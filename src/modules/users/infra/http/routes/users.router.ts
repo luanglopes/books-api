@@ -10,12 +10,7 @@ const userController = new UserController()
 
 usersRouter.get('/', userController.index)
 usersRouter.get('/:id', userController.getOne)
-usersRouter.post(
-  '/',
-  ensureAuthenticated,
-  ensureHasRole(EUserRoles.admin),
-  userController.create,
-)
+usersRouter.post('/', userController.create)
 usersRouter.put(
   '/:id',
   ensureAuthenticated,
