@@ -1,12 +1,14 @@
-import bcrypt from 'bcrypt'
-
 import AppError from '@shared/errors/AppError'
 import ICreateUserDTO from '../dtos/ICreateUserDTO'
 import IUsersRepository from '../repositories/IUsersRepository'
 import IUserEntity from '../entities/IUserEntity'
+import IHashProvider from '../providers/interfaces/IHashProvider'
 
 export default class CreateUserService {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    private usersRepository: IUsersRepository,
+    private hashProvider: IHashProvider,
+  ) {}
 
   async execute(data: ICreateUserDTO): Promise<IUserEntity> {
     const [userWithEmail, userWithPhone] = await Promise.all([
@@ -22,7 +24,7 @@ export default class CreateUserService {
       throw new AppError('Phone already in use')
     }
 
-    data.password = await bcrypt.hash(data.password, 10)
+    data.password = await this.hashProvider.generateHash(data.password)
 
     const user = await this.usersRepository.create(data)
 

@@ -1,9 +1,8 @@
-import bcrypt from 'bcrypt'
-
 import AppError from '@shared/errors/AppError'
 import ICreateUserDTO from '../dtos/ICreateUserDTO'
 import IUsersRepository from '../repositories/IUsersRepository'
 import IUserEntity from '../entities/IUserEntity'
+import IHashProvider from '../providers/interfaces/IHashProvider'
 
 interface IRequest {
   id: number
@@ -11,7 +10,10 @@ interface IRequest {
 }
 
 export default class UpdateUserService {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    private usersRepository: IUsersRepository,
+    private hashProvider: IHashProvider,
+  ) {}
 
   async execute({ id, data }: IRequest): Promise<IUserEntity> {
     const user = await this.usersRepository.findById(id)
@@ -34,7 +36,7 @@ export default class UpdateUserService {
     }
 
     if (data.password) {
-      data.password = await bcrypt.hash(data.password, 10)
+      data.password = await this.hashProvider.generateHash(data.password)
     }
 
     Object.assign(user, data)

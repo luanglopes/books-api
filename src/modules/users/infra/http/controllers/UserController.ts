@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import ShowUserService from '@modules/users/services/ShowUserService'
 import UpdateUserService from '@modules/users/services/UpdateUserService'
 import CreateUserService from '@modules/users/services/CreateUserService'
+import BcryptHashProvider from '@modules/users/providers/implementations/BcryptHashProvider'
 import UsersRepository from '../../typeorm/repositories/UsersRepository'
 
 export default class UserController {
@@ -42,7 +43,10 @@ export default class UserController {
   async create(req: Request, res: Response): Promise<void> {
     const data = req.body
 
-    const createUserService = new CreateUserService(new UsersRepository())
+    const createUserService = new CreateUserService(
+      new UsersRepository(),
+      new BcryptHashProvider(),
+    )
 
     const user = await createUserService.execute(data)
 
@@ -55,7 +59,10 @@ export default class UserController {
     const { id } = req.params
     const data = req.body
 
-    const updateBookService = new UpdateUserService(new UsersRepository())
+    const updateBookService = new UpdateUserService(
+      new UsersRepository(),
+      new BcryptHashProvider(),
+    )
 
     const user = await updateBookService.execute({ id: +id, data })
 
