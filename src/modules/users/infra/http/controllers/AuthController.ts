@@ -20,6 +20,8 @@ export default class AuthController {
 
     const authData = await authenticateUserService.execute({ email, password })
 
+    delete authData.user.password
+
     res.json(authData)
   }
 }
