@@ -5,11 +5,11 @@ import ICreateBookDTO from '../dtos/ICreateBookDTO'
 export default interface IBooksRepository {
   list(params: IPageParamsDTO): Promise<Array<IBookEntity>>
 
-  findById(id: number): Promise<IBookEntity | undefined>
+  findById(id: IBookEntity['id']): Promise<IBookEntity | undefined>
 
   create(data: ICreateBookDTO): Promise<IBookEntity>
 
   update(book: IBookEntity): Promise<IBookEntity>
 
-  delete(id: number): Promise<void>
+  delete(id: IBookEntity['id']): Promise<void>
 }

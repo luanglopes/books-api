@@ -44,6 +44,15 @@
         }
       },
       {
+        "selector": "enum",
+        "format": ["PascalCase"],
+        "prefix": ["E"],
+        "custom": {
+          "regex": "^E[A-Z]",
+          "match": false
+        }
+      },
+      {
         "selector": "default",
         "format": ["camelCase"],
         "leadingUnderscore": "allow",
