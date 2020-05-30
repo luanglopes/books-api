@@ -7,14 +7,14 @@ import BooksRepository from '../../typeorm/repositories/BooksRepository'
 export default class BookController {
   async index(req: Request, res: Response): Promise<void> {
     const { page, size } = req.query
-    const pageSize = size ? +size : undefined
-    const pageNumber = page ? +page : undefined
+    const parsedSize = size ? +size : undefined
+    const parsedPage = page ? +page : undefined
 
     const booksRepository = new BooksRepository()
 
     const books = await booksRepository.list({
-      pageSize,
-      pageNumber,
+      page: parsedPage,
+      size: parsedSize,
     })
 
     res.json(books)

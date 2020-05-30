@@ -1,4 +1,4 @@
 export default interface IPageParamsDTO {
-  pageSize?: number
-  pageNumber?: number
+  size?: number
+  page?: number
 }

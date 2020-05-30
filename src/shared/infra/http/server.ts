@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import 'reflect-metadata'
-
 import express, { NextFunction, Response, Request } from 'express'
 import helmet from 'helmet'
 import cors from 'cors'

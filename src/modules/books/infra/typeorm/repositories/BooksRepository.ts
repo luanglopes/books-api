@@ -19,18 +19,16 @@ export default class BooksRepository implements IBooksRepository {
     return book
   }
 
-  async list({
-    pageNumber,
-    pageSize,
-  }: IPageParamsDTO): Promise<Array<IBookEntity>> {
-    const take = pageSize
-    let skip
+  async list({ page, size }: IPageParamsDTO): Promise<Array<IBookEntity>> {
+    let pageParams
 
-    if (pageNumber && pageSize) {
-      skip = (pageNumber - 1) * pageSize
+    if (page && size) {
+      const take = size
+      const skip = (page - 1) * size
+      pageParams = { skip, take }
     }
 
-    const books = await this.ormRepository.find({ skip, take })
+    const books = await this.ormRepository.find(pageParams)
 
     return books
   }

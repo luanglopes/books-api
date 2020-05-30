@@ -52,7 +52,6 @@
           "match": false
         }
       },
-
       {
         "selector": "variable",
         "format": ["camelCase", "UPPER_CASE"],
@@ -67,14 +66,12 @@
         "format": ["camelCase"],
         "leadingUnderscore": "allow"
       },
-
       {
         "selector": "memberLike",
         "modifiers": ["private"],
         "format": ["camelCase"],
         "leadingUnderscore": "forbid"
       },
-
       {
         "selector": "typeLike",
         "format": ["PascalCase"]
