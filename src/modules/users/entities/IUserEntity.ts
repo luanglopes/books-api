@@ -1,3 +1,4 @@
+import IBookEntity from '@modules/books/entities/IBookEntity'
 import EUserRoles from '../enums/EUserRoles'
 
 export default interface IUserEntity {
@@ -8,4 +9,5 @@ export default interface IUserEntity {
   email: string
   password: string
   role: EUserRoles
+  favoriteBooks?: Array<IBookEntity>
 }

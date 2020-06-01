@@ -1,6 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm'
 
 import EUserRoles from '@modules/users/enums/EUserRoles'
+import Book from '@modules/books/infra/typeorm/entities/Book'
 
 @Entity('users')
 export default class User {
@@ -28,4 +35,12 @@ export default class User {
     default: EUserRoles.user,
   })
   role: EUserRoles
+
+  @ManyToMany(() => Book, { cascade: true })
+  @JoinTable({
+    name: 'user_favorite_books',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'book_id', referencedColumnName: 'id' },
+  })
+  favoriteBooks: Array<Book>
 }

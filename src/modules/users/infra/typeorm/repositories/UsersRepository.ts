@@ -1,9 +1,12 @@
 import { Repository, getRepository } from 'typeorm'
 
-import IUsersRepository from '@modules/users/repositories/IUsersRepository'
+import IUsersRepository, {
+  IFindByIdOptions,
+} from '@modules/users/repositories/IUsersRepository'
 import IUserEntity from '@modules/users/entities/IUserEntity'
 import IPageParamsDTO from '@shared/dtos/IPageParamsDTO'
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO'
+import IBookEntity from '@modules/books/entities/IBookEntity'
 import User from '../entities/User'
 
 export default class UsersRepository implements IUsersRepository {
@@ -13,8 +16,16 @@ export default class UsersRepository implements IUsersRepository {
     this.ormRepository = getRepository(User)
   }
 
-  async findById(id: IUserEntity['id']): Promise<IUserEntity | undefined> {
-    const user = await this.ormRepository.findOne(id)
+  async findById(
+    id: IUserEntity['id'],
+    options: IFindByIdOptions = {},
+  ): Promise<IUserEntity | undefined> {
+    const { relations } = options
+
+    const user = await this.ormRepository.findOne({
+      where: { id },
+      relations,
+    })
 
     return user
   }
@@ -63,5 +74,32 @@ export default class UsersRepository implements IUsersRepository {
     const user = await this.ormRepository.findOne({ phone })
 
     return user
+  }
+
+  async addFavoriteBook(
+    user: Required<IUserEntity>,
+    book: IBookEntity,
+  ): Promise<void> {
+    user.favoriteBooks.push(book)
+
+    await this.ormRepository.save(user)
+  }
+
+  async removeFavoriteBook(
+    userId: IUserEntity['id'],
+    bookId: IBookEntity['id'],
+  ): Promise<void> {
+    const user = await this.ormRepository.findOne({
+      where: { id: userId },
+      relations: ['favoriteBooks'],
+    })
+
+    if (user) {
+      user.favoriteBooks = user.favoriteBooks.filter((favorite) => {
+        return favorite.id !== bookId
+      })
+
+      await this.ormRepository.save(user)
+    }
   }
 }
