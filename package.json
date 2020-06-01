@@ -10,7 +10,8 @@
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules src/shared/infra/http/server.ts",
     "build": "tsc",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "start": "cross-env NODE_ENV=production node -r module-alias/register ./dist/shared/infra/http/server.js"
+    "start": "cross-env NODE_ENV=production node -r module-alias/register ./dist/shared/infra/http/server.js",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -52,5 +53,6 @@
     "@modules": "dist/modules",
     "@config": "dist/config",
     "@shared": "dist/shared"
-  }
+  },
+  "pre-commit": "lint"
 }

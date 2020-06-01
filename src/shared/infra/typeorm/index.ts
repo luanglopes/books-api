@@ -16,4 +16,5 @@ const initDatabase = async (): Promise<void> => {
   await createConnection(connOptions)
 }
 
+// eslint-disable-next-line no-console
 initDatabase().catch(console.error)
