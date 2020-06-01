@@ -5,8 +5,8 @@ FROM node:lts
 WORKDIR /home/app
 
 # Dependencies
-COPY package*.json ./
-RUN npm i --only=prod
+COPY package.json ./
+RUN npm i
 
 # Copy app files
 COPY src src
