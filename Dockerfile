@@ -5,15 +5,20 @@ FROM node:lts
 WORKDIR /home/app
 
 # Dependencies
-COPY package*.json ./
-RUN npm i --only=prod
+COPY package.json ./
+RUN npm i
 
 # Copy app files
 COPY src src
 COPY .env .env
+COPY ormconfig.json ormconfig.json
+COPY tsconfig.json tsconfig.json
+
+# Build
+RUN npm run build
 
 # Exposes container port 3000
 EXPOSE 3000
 
 # Run application
-CMD ["node", "src/server.js"]
+CMD ["npm", "start"]

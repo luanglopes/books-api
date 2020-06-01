@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7299b799-2b75-4119-8426-cd36a415d7a8",
+		"_postman_id": "e58dd585-fc58-42c6-85c4-d9b28f05d386",
 		"name": "books-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"admin@example.com\",\n\t\"password\": \"123456\"\n}",
+							"raw": "{\n\t\"email\": \"jhon.doe@email.com\",\n\t\"password\": \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,42 +38,6 @@
 							"port": "3000",
 							"path": [
 								"auth"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Verify Token",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWQiOjEsImlhdCI6MTU3MzUwNzQ1MCwiZXhwIjoxNTczNTkzODUwfQ.nSuI-oWjEpmcpa39cS-IwGQKS-xGt1wnF_xOMbQWmYQ\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/auth/verify-token",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"auth",
-								"verify-token"
 							]
 						}
 					},
@@ -94,11 +58,6 @@
 								"key": "Content-Type",
 								"name": "Content-Type",
 								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer",
 								"type": "text"
 							}
 						],
@@ -131,7 +90,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users?pageNumber=1&pageSize=10",
+							"raw": "http://localhost:3000/users?page=1&size=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -142,11 +101,11 @@
 							],
 							"query": [
 								{
-									"key": "pageNumber",
+									"key": "page",
 									"value": "1"
 								},
 								{
-									"key": "pageSize",
+									"key": "size",
 									"value": "10"
 								}
 							]
@@ -216,7 +175,7 @@
 					"response": []
 				},
 				{
-					"name": "Update User Copy",
+					"name": "Delete User",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -257,29 +216,22 @@
 								"name": "Content-Type",
 								"type": "text",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/users/1/favorites?pageNumber=1&pageSize=10",
+							"raw": "http://localhost:3000/favorite-books",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								"1",
-								"favorites"
-							],
-							"query": [
-								{
-									"key": "pageNumber",
-									"value": "1"
-								},
-								{
-									"key": "pageSize",
-									"value": "10"
-								}
+								"favorite-books"
 							]
 						}
 					},
@@ -312,16 +264,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/1/favorites",
+							"raw": "http://localhost:3000/favorite-books",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								"1",
-								"favorites"
+								"favorite-books"
 							]
 						}
 					},
@@ -345,216 +295,15 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/users/1/favorites/1",
+							"raw": "http://localhost:3000/favorite-books/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								"1",
-								"favorites",
+								"favorite-books",
 								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Categories",
-			"item": [
-				{
-					"name": "Create Category",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Technology\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/categories",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List Categories",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/categories?pageNumber=1&pageSize=10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories"
-							],
-							"query": [
-								{
-									"key": "pageNumber",
-									"value": "1"
-								},
-								{
-									"key": "pageSize",
-									"value": "10"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get One Category",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/categories/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Category",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Technology JS\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/categories/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Category",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3000/categories/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List Category Books",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/categories/1/books?pageNumber=1&pageSize=10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories",
-								"1",
-								"books"
-							],
-							"query": [
-								{
-									"key": "pageNumber",
-									"value": "1"
-								},
-								{
-									"key": "pageSize",
-									"value": "10"
-								}
 							]
 						}
 					},
@@ -612,7 +361,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/books?pageNumber=1&pageSize=10",
+							"raw": "http://localhost:3000/books?page=1&size=3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -623,12 +372,12 @@
 							],
 							"query": [
 								{
-									"key": "pageNumber",
+									"key": "page",
 									"value": "1"
 								},
 								{
-									"key": "pageSize",
-									"value": "10"
+									"key": "size",
+									"value": "3"
 								}
 							]
 						}
