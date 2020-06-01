@@ -14,7 +14,9 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 - Clone o repositório em sua máquina utlizando o comando `git clone https://github.com/luanglopes/books-api.git` ou [baixe o .zip](https://github.com/luanglopes/books-api/archive/master.zip);
 - Na raiz do projeto execute o comando `yarn` para instalar as dependências;
 - Crie um arquivo `.env` seguindo a estrutura do arquivo `example.env` e coloque as variáveis do seu ambiente;
+- Crie um arquivo `ormconfig.json` seguindo a estrutura do arquivo `ormconfig.example.json` e coloque as variáveis do seu ambiente;
   - Lembre-se de criar a base de dados da aplicação no seu banco de dados.
+  - Esse é um arquivo de configuração do do TypeORM, [mais detalhes](https://typeorm.io/#/using-ormconfig).
 - Execute o comando `yarn typeorm migration:run` para fazer a criação das tabelas no banco.
 
 #### Executando a aplicação
@@ -44,10 +46,10 @@ Na raiz do projeto existe um arquivo de configuração do docker que pode ser ut
 
 ### Por que TypeScript?
 
-O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que ajuda muito na hora de aplicar o DDD, facilitando a definição das "regras" a serem seguidas utilizando interfaces e fazendo com que os serviços (onde é implementada a regra de negócio) possam depender apenas delas e não de implementações diretas.
+O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que ajuda muito na hora de aplicar o DDD, facilitando a definição das "regras" a serem seguidas utilizando interfaces, desta forma é possivél fazer com que os serviços (onde é implementada a regra de negócio) possam depender apenas de interfaces e não de implementações diretas.
 
 ### Quais melhorias poderiam ser implementadas?
 
-- Implementar contaoner de injeção de dependências (ex.: [tsyringe](https://github.com/microsoft/tsyringe));
-- Testes unitário nos serviços (ex.: [Jest](https://jestjs.io/));
+- Implementar container de injeção de dependências (ex.: [tsyringe](https://github.com/microsoft/tsyringe));
+- Testes unitários nos serviços (ex.: [Jest](https://jestjs.io/));
 - Testes de integração na API (ex.: [Jest](https://jestjs.io/) + [supertest](https://github.com/visionmedia/supertest)).
