@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError'
 import ICreateUserDTO from '../dtos/ICreateUserDTO'
 import IUsersRepository from '../repositories/IUsersRepository'
 import IUserEntity from '../entities/IUserEntity'
-import IHashProvider from '../providers/interfaces/IHashProvider'
+import IHashProvider from '../providers/HashProvider/interfaces/IHashProvider'
 
 interface IRequest {
   id: number

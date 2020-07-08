@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import ShowUserService from '@modules/users/services/ShowUserService'
 import UpdateUserService from '@modules/users/services/UpdateUserService'
 import CreateUserService from '@modules/users/services/CreateUserService'
-import BcryptHashProvider from '@modules/users/providers/implementations/BcryptHashProvider'
+import BcryptHashProvider from '@modules/users/providers/HashProvider/implementations/BcryptHashProvider'
 import UsersRepository from '../../typeorm/repositories/UsersRepository'
 
 export default class UserController {

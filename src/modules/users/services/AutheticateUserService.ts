@@ -1,7 +1,7 @@
 import AppError from '@shared/errors/AppError'
 import IUsersRepository from '../repositories/IUsersRepository'
-import IHashProvider from '../providers/interfaces/IHashProvider'
-import IAuthTokenProvider from '../providers/interfaces/IAuthTokenProvider'
+import IHashProvider from '../providers/HashProvider/interfaces/IHashProvider'
+import IAuthTokenProvider from '../providers/TokenProvider/interfaces/IAuthTokenProvider'
 import IAuthenticationDTO from '../dtos/IAuthenticationDTO'
 
 interface IRequest {

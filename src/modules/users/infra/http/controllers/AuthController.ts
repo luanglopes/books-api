@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 
 import AuthenticateUserService from '@modules/users/services/AutheticateUserService'
-import BcryptHashProvider from '@modules/users/providers/implementations/BcryptHashProvider'
-import JWTTokenProvider from '@modules/users/providers/implementations/JWTTokenProvider'
+import BcryptHashProvider from '@modules/users/providers/HashProvider/implementations/BcryptHashProvider'
+import JWTTokenProvider from '@modules/users/providers/TokenProvider/implementations/JWTTokenProvider'
 import UsersRepository from '../../typeorm/repositories/UsersRepository'
 
 export default class AuthController {
