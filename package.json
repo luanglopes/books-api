@@ -7,12 +7,13 @@
   "author": "Luan Lopes <luanglopes@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules --no-notify src/shared/infra/http/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules --no-notify src/shared/infra/http/server.ts",
     "build": "tsc",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "start": "cross-env NODE_ENV=production node -r module-alias/register ./dist/shared/infra/http/server.js",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix",
-    "test": "jest"
+    "test": "jest",
+    "test:dev": "jest --watch"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
