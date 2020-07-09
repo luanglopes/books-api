@@ -32,11 +32,11 @@ export default class VerifyAuthTokenService {
 
     const decoded = await this.authTokenProvider.verifyToken(token)
 
-    const { sub: id } = decoded as ITokenPayload
-
     if (!decoded) {
       throw new AppError('Invalid token', 401)
     }
+
+    const { sub: id } = decoded as ITokenPayload
 
     const user = await this.usersRepository.findById(+id)
 
