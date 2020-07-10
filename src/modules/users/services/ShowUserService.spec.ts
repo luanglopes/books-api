@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError'
 import ShowUserService from './ShowUserService'
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository'
 
-describe('UpdateUserService', () => {
+describe('ShowUserService', () => {
   let fakeUsersRepository: FakeUsersRepository
   let showUserService: ShowUserService
 
