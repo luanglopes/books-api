@@ -22,7 +22,9 @@ export default class FakeUsersRepository implements IUsersRepository {
     return newUser
   }
 
-  async addFavoriteBook(): Promise<void> {}
+  async addFavoriteBook(): Promise<void> {
+    return undefined
+  }
 
   async delete(id: IUserEntity['id']): Promise<void> {
     this.users = this.users.filter((user) => user.id !== id)
@@ -56,5 +58,7 @@ export default class FakeUsersRepository implements IUsersRepository {
     return this.users[userIndex]
   }
 
-  async removeFavoriteBook(): Promise<void> {}
+  async removeFavoriteBook(): Promise<void> {
+    return undefined
+  }
 }
