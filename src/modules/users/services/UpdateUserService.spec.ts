@@ -5,9 +5,9 @@ import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider'
 import EUserRoles from '../enums/EUserRoles'
 
 describe('UpdateUserService', () => {
-  let fakeUsersRepository
-  let fakeHashProvider
-  let updateUserService
+  let fakeUsersRepository: FakeUsersRepository
+  let fakeHashProvider: FakeHashProvider
+  let updateUserService: UpdateUserService
 
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository()
