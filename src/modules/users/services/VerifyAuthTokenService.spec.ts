@@ -5,15 +5,21 @@ import FakeTokenProvider from '../providers/TokenProvider/fakes/FakeTokenProvide
 import EUserRoles from '../enums/EUserRoles'
 
 describe('VerifyAuthTokenService', () => {
-  it('should return a user if valid authotizationHeader is provided', async () => {
-    const fakeUsersRepository = new FakeUsersRepository()
-    const fakeTokenProvider = new FakeTokenProvider()
+  let fakeUsersRepository: FakeUsersRepository
+  let fakeTokenProvider: FakeTokenProvider
+  let verifyAuthTokenService: VerifyAuthTokenService
 
-    const verifyAuthTokenService = new VerifyAuthTokenService(
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository()
+    fakeTokenProvider = new FakeTokenProvider()
+
+    verifyAuthTokenService = new VerifyAuthTokenService(
       fakeUsersRepository,
       fakeTokenProvider,
     )
+  })
 
+  it('should return a user if valid authotizationHeader is provided', async () => {
     const user = await fakeUsersRepository.create({
       birthday: new Date(),
       email: 'jon@email.com',
@@ -31,14 +37,6 @@ describe('VerifyAuthTokenService', () => {
   })
 
   it('should throw an error if empty authorizationHeader is provided', async () => {
-    const fakeUsersRepository = new FakeUsersRepository()
-    const fakeTokenProvider = new FakeTokenProvider()
-
-    const verifyAuthTokenService = new VerifyAuthTokenService(
-      fakeUsersRepository,
-      fakeTokenProvider,
-    )
-
     await expect(
       verifyAuthTokenService.execute({
         authorizationHeader: '',
@@ -47,14 +45,6 @@ describe('VerifyAuthTokenService', () => {
   })
 
   it('should throw an error if no token is provided on authorizationHeader', async () => {
-    const fakeUsersRepository = new FakeUsersRepository()
-    const fakeTokenProvider = new FakeTokenProvider()
-
-    const verifyAuthTokenService = new VerifyAuthTokenService(
-      fakeUsersRepository,
-      fakeTokenProvider,
-    )
-
     await expect(
       verifyAuthTokenService.execute({
         authorizationHeader: 'Bearer ',
@@ -63,17 +53,9 @@ describe('VerifyAuthTokenService', () => {
   })
 
   it('should throw an error if invalid token is provided on authorizationHeader', async () => {
-    const fakeUsersRepository = new FakeUsersRepository()
-    const fakeTokenProvider = new FakeTokenProvider()
-
     const verifyTokenSpy = jest.spyOn(fakeTokenProvider, 'verifyToken')
 
     verifyTokenSpy.mockReturnValue(Promise.resolve(undefined))
-
-    const verifyAuthTokenService = new VerifyAuthTokenService(
-      fakeUsersRepository,
-      fakeTokenProvider,
-    )
 
     await expect(
       verifyAuthTokenService.execute({
@@ -83,14 +65,6 @@ describe('VerifyAuthTokenService', () => {
   })
 
   it('should throw an error if a token for an invalid user provided on authorizationHeader', async () => {
-    const fakeUsersRepository = new FakeUsersRepository()
-    const fakeTokenProvider = new FakeTokenProvider()
-
-    const verifyAuthTokenService = new VerifyAuthTokenService(
-      fakeUsersRepository,
-      fakeTokenProvider,
-    )
-
     const token = await fakeTokenProvider.generateToken({
       id: 1,
       password: '',
