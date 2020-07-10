@@ -4,7 +4,7 @@ import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository'
 import FakeTokenProvider from '../providers/TokenProvider/fakes/FakeTokenProvider'
 import EUserRoles from '../enums/EUserRoles'
 
-describe('VeridyAuthTokenService', () => {
+describe('VerifyAuthTokenService', () => {
   it('should return a user if valid authotizationHeader is provided', async () => {
     const fakeUsersRepository = new FakeUsersRepository()
     const fakeTokenProvider = new FakeTokenProvider()
