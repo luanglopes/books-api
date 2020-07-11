@@ -7,10 +7,10 @@
   "author": "Luan Lopes <luanglopes@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules --no-notify src/shared/infra/http/server.ts",
-    "build": "tsc",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --no-notify src/shared/infra/http/server.ts",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "start": "cross-env NODE_ENV=production node -r module-alias/register ./dist/shared/infra/http/server.js",
+    "start": "cross-env NODE_ENV=production node -r dotenv/config ./dist/shared/infra/http/server.js",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix",
     "test": "jest",
     "test:dev": "jest --watch"
@@ -18,19 +18,24 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.2",
     "dayjs": "^1.8.17",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
-    "module-alias": "^2.2.2",
     "mysql": "^2.17.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
     "@types/dotenv": "^8.2.0",
@@ -41,6 +46,9 @@
     "@types/mysql": "^2.15.13",
     "@typescript-eslint/eslint-plugin": "^3.0.0",
     "@typescript-eslint/parser": "^3.0.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.0",
+    "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -53,10 +61,5 @@
     "ts-node-dev": "^1.0.0-pre.44",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.9.3"
-  },
-  "_moduleAliases": {
-    "@modules": "dist/modules",
-    "@config": "dist/config",
-    "@shared": "dist/shared"
   }
 }
