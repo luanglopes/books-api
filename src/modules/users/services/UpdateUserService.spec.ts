@@ -137,6 +137,9 @@ describe('UpdateUserService', () => {
     const result = await updateUserService.execute({ id, data })
 
     expect(result.password).toEqual('hashed-password')
-    expect(updateUserSpy).toHaveBeenCalledWith(result)
+    expect(updateUserSpy).toHaveBeenCalledWith({
+      ...data,
+      password: 'hashed-password',
+    })
   })
 })
