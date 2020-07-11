@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import AuthenticateUserService from '@modules/users/services/AutheticateUserService'
+import AuthenticateUserService from '@modules/users/services/AuthenticateUserService'
 import BcryptHashProvider from '@modules/users/providers/HashProvider/implementations/BcryptHashProvider'
 import JWTTokenProvider from '@modules/users/providers/TokenProvider/implementations/JWTTokenProvider'
 import UsersRepository from '../../typeorm/repositories/UsersRepository'
