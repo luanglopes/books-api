@@ -46,7 +46,7 @@ Na raiz do projeto existe um arquivo de configuração do docker que pode ser ut
 
 ### Por que TypeScript?
 
-O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que ajuda muito na hora de aplicar o DDD, facilitando a definição das "regras" a serem seguidas utilizando interfaces, desta forma é possivél fazer com que os serviços (onde é implementada a regra de negócio) possam depender apenas de interfaces e não de implementações diretas.
+O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que ajuda muito na hora de aplicar o DDD, facilitando a definição das "regras" a serem seguidas utilizando interfaces, desta forma é possível fazer com que os serviços (onde é implementada a regra de negócio) possam depender apenas de interfaces e não de implementações diretas.
 
 ### Quais melhorias poderiam ser implementadas?
 
