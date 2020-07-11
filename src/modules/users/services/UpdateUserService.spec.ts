@@ -139,6 +139,7 @@ describe('UpdateUserService', () => {
     expect(result.password).toEqual('hashed-password')
     expect(updateUserSpy).toHaveBeenCalledWith({
       ...data,
+      id: 1,
       password: 'hashed-password',
     })
   })
