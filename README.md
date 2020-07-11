@@ -4,10 +4,10 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 
 ## Ambiente
 
-- NodeJS **v10.16.0** ou mais recente ([Downloads](https://nodejs.org/));
-- NPM **v6.10.3** ou mais recente (é instalado juntamente com o NodeJS);
+- NodeJS **v12.18.1** ou mais recente ([Downloads](https://nodejs.org/));
+- NPM **v6.14.6** ou mais recente (é instalado juntamente com o NodeJS);
 - MySQL **v5.7** ([Downloads](https://dev.mysql.com/downloads/mysql/));
-- Yarn **1.22** ([Instalação](https://yarnpkg.com/getting-started/install)).
+- Yarn **1.22.4** ou mais recente ([Instalação](https://yarnpkg.com/getting-started/install)).
 
 ## Getting Started
 
@@ -34,9 +34,9 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 
 Dentro da raiz do projeto existe um arquivo chamado `postman_collection.json`, este é um arquivo de coleção do postman com as rotas da API.
 
-[Baixar Postman](https://www.getpostman.com/downloads/)
+[Baixar Postman](https://www.postman.com/downloads/)
 
-[Tutoriais do Postman](https://www.getpostman.com/resources/videos-tutorials/)
+[Tutoriais do Postman](https://learning.postman.com/)
 
 ## Docker
 
@@ -46,7 +46,7 @@ Na raiz do projeto existe um arquivo de configuração do docker que pode ser ut
 
 ### Por que TypeScript?
 
-O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que ajuda muito na hora de aplicar o DDD, facilitando a definição das "regras" a serem seguidas utilizando interfaces, desta forma é possível fazer com que os serviços (onde é implementada a regra de negócio) possam depender apenas de interfaces e não de implementações diretas.
+O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que ajuda muito na hora de aplicar o DDD e princípios S.O.L.I.D, facilitando a definição das "regras" a serem seguidas utilizando interfaces, desta forma é possível fazer com que os serviços (onde é implementada a regra de negócio) possam depender apenas de interfaces e não de implementações diretas.
 
 ### Quais melhorias poderiam ser implementadas?
 
