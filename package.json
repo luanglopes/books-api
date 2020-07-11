@@ -1,6 +1,6 @@
 {
   "name": "books-api",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Books API",
   "main": "src/shared/infra/http/server.js",
   "repository": "https://github.com/luanglopes/books-api.git",
