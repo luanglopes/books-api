@@ -16,7 +16,7 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 - Crie um arquivo `.env` seguindo a estrutura do arquivo `example.env` e coloque as variáveis do seu ambiente;
 - Crie um arquivo `ormconfig.json` seguindo a estrutura do arquivo `ormconfig.example.json` e coloque as variáveis do seu ambiente;
   - Lembre-se de criar a base de dados da aplicação no seu banco de dados.
-  - Esse é um arquivo de configuração do do TypeORM, [mais detalhes](https://typeorm.io/#/using-ormconfig).
+  - Esse é um arquivo de configuração do TypeORM, [mais detalhes](https://typeorm.io/#/using-ormconfig).
 - Execute o comando `yarn typeorm migration:run` para fazer a criação das tabelas no banco.
 
 #### Executando a aplicação
