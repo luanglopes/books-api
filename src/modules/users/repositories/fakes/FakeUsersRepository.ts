@@ -1,6 +1,7 @@
 import IUserEntity from '@modules/users/entities/IUserEntity'
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO'
 import EUserRoles from '@modules/users/enums/EUserRoles'
+import IBookEntity from '@modules/books/entities/IBookEntity'
 import IUsersRepository from '../IUsersRepository'
 
 export default class FakeUsersRepository implements IUsersRepository {
@@ -22,8 +23,16 @@ export default class FakeUsersRepository implements IUsersRepository {
     return newUser
   }
 
-  async addFavoriteBook(): Promise<void> {
-    return undefined
+  async addFavoriteBook({ id }: IUserEntity, book: IBookEntity): Promise<void> {
+    const userIndex = this.users.findIndex((user) => user.id === id)
+    const userData = this.users[userIndex]
+
+    this.users[userIndex] = {
+      ...userData,
+      favoriteBooks: userData.favoriteBooks
+        ? [...userData.favoriteBooks, book]
+        : [book],
+    }
   }
 
   async delete(id: IUserEntity['id']): Promise<void> {
