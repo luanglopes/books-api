@@ -4,3 +4,4 @@ package-lock.json
 ormconfig.json
 yarn-error.log
 dist
+coverage

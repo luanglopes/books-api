@@ -17,7 +17,7 @@ export default interface IUsersRepository {
 
   create(data: ICreateUserDTO): Promise<IUserEntity>
 
-  update(book: IUserEntity): Promise<IUserEntity>
+  update(data: IUserEntity): Promise<IUserEntity>
 
   delete(id: IUserEntity['id']): Promise<void>
 
