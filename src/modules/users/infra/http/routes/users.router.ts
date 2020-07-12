@@ -5,7 +5,7 @@ import EUserRoles from '@modules/users/enums/EUserRoles'
 import UserController from '../controllers/UserController'
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 import ensureHasRole from '../middlewares/ensureHasRole'
-import usersValidators from '../validators/users'
+import usersValidators from '../validators/users.validator'
 
 const usersRouter = Router()
 const userController = new UserController()
