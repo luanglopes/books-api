@@ -54,4 +54,4 @@ O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que
 - [x] Testes unitários nos serviços (ex.: [Jest](https://jestjs.io/));
 - [ ] Testes de integração na API (ex.: [Jest](https://jestjs.io/) + [supertest](https://github.com/visionmedia/supertest)).
 - [x] Validação de query params, route params e body das requisições (ex.: [Joi](https://github.com/hapijs/joi), [celebrate](https://github.com/arb/celebrate))
-- [ ] Implementar serializers para garantir contratos da API e não enciar campos sensíveis para o cliente (ex.: ??)
+- [ ] Implementar serializers para garantir contratos da API e não enviar campos sensíveis para o cliente (ex.: ??)
