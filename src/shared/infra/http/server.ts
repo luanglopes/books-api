@@ -1,12 +1,13 @@
 /* eslint-disable no-console */
 import 'reflect-metadata'
-import express, { NextFunction, Response, Request } from 'express'
+import express from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
 import 'express-async-errors'
 
 import AppError from '@shared/errors/AppError'
 import routes from './routes'
+import errorHandler from './errors/handler'
 
 import '@shared/infra/typeorm'
 
@@ -22,19 +23,7 @@ app.use(async () => {
   throw new AppError('Endpoint Not Found', 404)
 })
 
-app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
-  if (err instanceof AppError) {
-    return res
-      .status(err.statusCode)
-      .json({ staus: 'error', message: err.message, details: err.details })
-  }
-
-  console.error(err)
-
-  return res
-    .status(500)
-    .json({ status: 'error', message: 'Internal Server Error' })
-})
+app.use(errorHandler)
 
 const port = process.env.PORT || '3000'
 
