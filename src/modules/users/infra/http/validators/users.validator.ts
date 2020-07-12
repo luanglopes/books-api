@@ -16,11 +16,11 @@ const usersValidators = {
   create: {
     [Segments.BODY]: {
       name: Joi.string().required(),
-      birthday: Joi.string().required(),
+      birthday: Joi.date().required(),
       phone: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().min(6).required(),
-      role: Joi.string().allow(...Object.values(EUserRoles)),
+      role: Joi.string().valid(...Object.values(EUserRoles)),
     },
   },
   update: {
