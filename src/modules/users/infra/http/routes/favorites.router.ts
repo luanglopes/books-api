@@ -3,7 +3,7 @@ import { Router } from 'express'
 import FavoriteController from '../controllers/FavoriteController'
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 import favoritesValidators from '../validators/favorites.validator'
-import ensureValidation from '../middlewares/ensureValidation'
+import ensureValidation from '../../../../../shared/infra/http/routes/ensureValidation'
 
 const favoriteRouter = Router({ mergeParams: true })
 const favoriteController = new FavoriteController()
