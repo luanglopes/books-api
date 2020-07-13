@@ -65,7 +65,7 @@ const errorHandler: ErrorRequestHandler = (
 
   return res.status(500).json({
     status: 'error',
-    error: 'ValidationError',
+    error: 'UnknownError',
     message: 'Internal Server Error',
   })
 }
