@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --no-notify src/shared/infra/http/server.ts",
+    "dev:docker": "docker-compose -f docker-compose.dev.yml up -d",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "start": "cross-env NODE_ENV=production node -r dotenv/config ./dist/shared/infra/http/server.js",
