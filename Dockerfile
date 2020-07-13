@@ -6,19 +6,25 @@ WORKDIR /home/app
 
 # Dependencies
 COPY package.json ./
-RUN npm i
+COPY yarn.lock ./
+RUN yarn
 
-# Copy app files
+# Copy code and config files
 COPY src src
 COPY .env .env
 COPY ormconfig.json ormconfig.json
 COPY tsconfig.json tsconfig.json
+COPY babel.config.js babel.config.js
 
 # Build
-RUN npm run build
+RUN yarn build
 
-# Exposes container port 3000
-EXPOSE 3000
+# Add wait
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
+# Exposes container port 3333
+EXPOSE 3333
 
 # Run application
-CMD ["npm", "start"]
+CMD /wait && yarn start
