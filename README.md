@@ -13,7 +13,7 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 
 - Clone o repositório em sua máquina utlizando o comando `git clone https://github.com/luanglopes/books-api.git` ou [baixe o .zip](https://github.com/luanglopes/books-api/archive/master.zip);
 - Na raiz do projeto execute o comando `yarn` para instalar as dependências;
-- Crie um arquivo `.env` seguindo a estrutura do arquivo `example.env` e coloque as variáveis do seu ambiente;
+- Crie um arquivo `.env` seguindo a estrutura do arquivo `.env.example` e coloque as variáveis do seu ambiente;
 - Crie um arquivo `ormconfig.json` seguindo a estrutura do arquivo `ormconfig.example.json` e coloque as variáveis do seu ambiente;
   - Lembre-se de criar a base de dados da aplicação no seu banco de dados.
   - Esse é um arquivo de configuração do TypeORM, [mais detalhes](https://typeorm.io/#/using-ormconfig).
@@ -21,7 +21,7 @@ Uma API REST para gestão de usuário e livros de uma biblioteca.
 
 #### Executando a aplicação
 
-- **Desenvolvimento** Execute o comando `yarn dev:server`;
+- **Desenvolvimento** Execute o comando `yarn dev`;
 - **Produção**;
   - Execute o comando `yarn build` para criar um build de produção;
     - O build é gerado na pasta `dist` na raiz do projeto.
@@ -39,6 +39,12 @@ Dentro da raiz do projeto existe um arquivo chamado `postman_collection.json`, e
 [Tutoriais do Postman](https://learning.postman.com/)
 
 ## Docker
+
+### Dev
+
+O arquivo `docker-compose.yml` na raiz pode ser utilizado para executar a aplicação e o banco de dados dentro de conatiners do docker, utilize o comando `yarn dev:docker` para executar o subir de desevolvimento, esse comando utiliza o docker-compose tenha certeza que ele está instalado. O dockerfile utilizado para esse ambiente é o `DcokerfileDev`.
+
+### Prod
 
 Na raiz do projeto existe um arquivo de configuração do docker que pode ser utlizado para montar uma imagem com NodeJS para executar a aplicação em um container, para isso execute o comando `docker build -t <nome_da_nova_iamgem> .` na raiz do projeto.
 
