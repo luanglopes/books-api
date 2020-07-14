@@ -1,7 +1,7 @@
 import IUserEntity from '@modules/users/entities/IUserEntity'
 import IAuthTokenProvider from '../interfaces/IAuthTokenProvider'
 
-export default class JWTTokenProvider implements IAuthTokenProvider {
+export default class FakeTokenProvider implements IAuthTokenProvider {
   async generateToken(user: IUserEntity): Promise<string> {
     return `fake-token-for-user-id-${user.id}`
   }
