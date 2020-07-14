@@ -1,3 +1,5 @@
+import { injectable, inject } from 'tsyringe'
+
 import AppError from '@shared/errors/AppError'
 import IBookEntity from '../entities/IBookEntity'
 import IBooksRepository from '../repositories/IBooksRepository'
@@ -8,8 +10,11 @@ interface IRequest {
   data: ICreateBookDTO
 }
 
+@injectable()
 export default class UpdateBookService {
-  constructor(private booksRepository: IBooksRepository) {}
+  constructor(
+    @inject('BooksRepository') private booksRepository: IBooksRepository,
+  ) {}
 
   async execute({ id, data }: IRequest): Promise<IBookEntity> {
     const book = await this.booksRepository.findById(id)

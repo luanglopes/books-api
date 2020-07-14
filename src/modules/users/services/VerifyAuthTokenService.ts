@@ -1,3 +1,5 @@
+import { injectable, inject } from 'tsyringe'
+
 import AppError from '@shared/errors/AppError'
 import IAuthTokenProvider from '../providers/TokenProvider/interfaces/IAuthTokenProvider'
 import IUsersRepository from '../repositories/IUsersRepository'
@@ -13,9 +15,12 @@ interface IRequest {
   authorizationHeader?: string
 }
 
+@injectable()
 export default class VerifyAuthTokenService {
   constructor(
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('AuthTokenProvider')
     private authTokenProvider: IAuthTokenProvider,
   ) {}
 

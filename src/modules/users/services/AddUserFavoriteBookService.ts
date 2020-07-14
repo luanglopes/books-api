@@ -1,6 +1,8 @@
+import { injectable, inject } from 'tsyringe'
+
+import AppError from '@shared/errors/AppError'
 import IBookEntity from '@modules/books/entities/IBookEntity'
 import IBooksRepository from '@modules/books/repositories/IBooksRepository'
-import AppError from '@shared/errors/AppError'
 import IUserEntity from '../entities/IUserEntity'
 import IUsersRepository from '../repositories/IUsersRepository'
 
@@ -8,16 +10,18 @@ interface IRequest {
   userId: IUserEntity['id']
   bookId: IBookEntity['id']
 }
-
+@injectable()
 export default class AddUserFavoriteBookService {
   constructor(
-    private usersRepoitory: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+    @inject('BooksRepository')
     private booksRepository: IBooksRepository,
   ) {}
 
   async execute({ userId, bookId }: IRequest): Promise<void> {
     const [user, book] = await Promise.all([
-      this.usersRepoitory.findById(userId, { relations: ['favoriteBooks'] }),
+      this.usersRepository.findById(userId, { relations: ['favoriteBooks'] }),
       this.booksRepository.findById(bookId),
     ])
 
@@ -29,7 +33,7 @@ export default class AddUserFavoriteBookService {
       throw new AppError('Book does not exists')
     }
 
-    await this.usersRepoitory.addFavoriteBook(
+    await this.usersRepository.addFavoriteBook(
       { ...user, favoriteBooks: user.favoriteBooks || [] },
       book,
     )
