@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe'
 
 import ShowUserService from '@modules/users/services/ShowUserService'
 import UpdateUserService from '@modules/users/services/UpdateUserService'
 import CreateUserService from '@modules/users/services/CreateUserService'
-import BcryptHashProvider from '@modules/users/providers/HashProvider/implementations/BcryptHashProvider'
 import UsersRepository from '../../typeorm/repositories/UsersRepository'
 
 export default class UserController {
@@ -31,7 +31,7 @@ export default class UserController {
   async getOne(req: Request, res: Response): Promise<void> {
     const { id } = req.params
 
-    const showBookService = new ShowUserService(new UsersRepository())
+    const showBookService = container.resolve(ShowUserService)
 
     const user = await showBookService.execute(+id)
 
@@ -43,10 +43,7 @@ export default class UserController {
   async create(req: Request, res: Response): Promise<void> {
     const data = req.body
 
-    const createUserService = new CreateUserService(
-      new UsersRepository(),
-      new BcryptHashProvider(),
-    )
+    const createUserService = container.resolve(CreateUserService)
 
     const user = await createUserService.execute(data)
 
@@ -59,10 +56,7 @@ export default class UserController {
     const { id } = req.params
     const data = req.body
 
-    const updateBookService = new UpdateUserService(
-      new UsersRepository(),
-      new BcryptHashProvider(),
-    )
+    const updateBookService = container.resolve(UpdateUserService)
 
     const user = await updateBookService.execute({ id: +id, data })
 

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe'
 
 import ShowBookService from '@modules/books/services/ShowBookService'
 import UpdateBookService from '@modules/books/services/UpdateBookService'
@@ -23,7 +24,7 @@ export default class BookController {
   async getOne(req: Request, res: Response): Promise<void> {
     const { id } = req.params
 
-    const showBookService = new ShowBookService(new BooksRepository())
+    const showBookService = container.resolve(ShowBookService)
 
     const book = await showBookService.execute(+id)
 
@@ -44,7 +45,7 @@ export default class BookController {
     const { id } = req.params
     const data = req.body
 
-    const updateBookService = new UpdateBookService(new BooksRepository())
+    const updateBookService = container.resolve(UpdateBookService)
 
     const book = await updateBookService.execute({ id: +id, data })
 
