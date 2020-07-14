@@ -3,7 +3,7 @@ import { Segments, Joi } from 'celebrate'
 const favoritesValidators = {
   create: {
     [Segments.BODY]: {
-      bookdId: Joi.number().required(),
+      bookId: Joi.number().required(),
     },
   },
   delete: {
