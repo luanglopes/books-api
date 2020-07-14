@@ -1,3 +1,5 @@
+import { injectable, inject } from 'tsyringe'
+
 import AppError from '@shared/errors/AppError'
 import IUpdateUserDTO from '../dtos/IUpdateUserDTO'
 import IUsersRepository from '../repositories/IUsersRepository'
@@ -9,9 +11,12 @@ interface IRequest {
   data: IUpdateUserDTO
 }
 
+@injectable()
 export default class UpdateUserService {
   constructor(
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
 

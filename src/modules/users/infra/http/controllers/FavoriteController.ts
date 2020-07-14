@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe'
+
 import ListUserFavoriteBooksService from '@modules/users/services/ListUserFavoriteBooksService'
-import BooksRepository from '@modules/books/infra/typeorm/repositories/BooksRepository'
 import AddUserFavoriteBookService from '@modules/users/services/AddUserFavoriteBookService'
 import UsersRepository from '../../typeorm/repositories/UsersRepository'
 
@@ -8,9 +9,8 @@ export default class FavoriteController {
   async index(req: Request, res: Response): Promise<void> {
     const { id } = req.user
 
-    const usersRepository = new UsersRepository()
-    const listFavoriteBooksService = new ListUserFavoriteBooksService(
-      usersRepository,
+    const listFavoriteBooksService = container.resolve(
+      ListUserFavoriteBooksService,
     )
     const favorites = await listFavoriteBooksService.execute(id)
 
@@ -21,11 +21,8 @@ export default class FavoriteController {
     const { id } = req.user
     const { bookId } = req.body
 
-    const usersRepository = new UsersRepository()
-    const booksRepository = new BooksRepository()
-    const addUserFavoriteBookService = new AddUserFavoriteBookService(
-      usersRepository,
-      booksRepository,
+    const addUserFavoriteBookService = container.resolve(
+      AddUserFavoriteBookService,
     )
 
     await addUserFavoriteBookService.execute({ userId: id, bookId })

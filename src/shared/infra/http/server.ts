@@ -10,6 +10,7 @@ import routes from './routes'
 import errorHandler from './errors/handler'
 
 import '@shared/infra/typeorm'
+import '@shared/container'
 
 const app = express()
 

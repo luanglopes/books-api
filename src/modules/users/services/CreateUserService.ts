@@ -1,12 +1,17 @@
+import { injectable, inject } from 'tsyringe'
+
 import AppError from '@shared/errors/AppError'
 import ICreateUserDTO from '../dtos/ICreateUserDTO'
 import IUsersRepository from '../repositories/IUsersRepository'
 import IUserEntity from '../entities/IUserEntity'
 import IHashProvider from '../providers/HashProvider/interfaces/IHashProvider'
 
+@injectable()
 export default class CreateUserService {
   constructor(
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
 

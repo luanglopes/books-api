@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
+import { container } from 'tsyringe'
 
 import VerifyAuthTokenService from '@modules/users/services/VerifyAuthTokenService'
-import JWTTokenProvider from '@modules/users/providers/TokenProvider/implementations/JWTTokenProvider'
-import UsersRepository from '../../typeorm/repositories/UsersRepository'
 
 export default async function ensureAuthenticated(
   req: Request,
@@ -11,12 +10,7 @@ export default async function ensureAuthenticated(
 ): Promise<void> {
   const { authorization } = req.headers
 
-  const usersRepository = new UsersRepository()
-  const authTokenProvider = new JWTTokenProvider()
-  const verifyAuthTokenService = new VerifyAuthTokenService(
-    usersRepository,
-    authTokenProvider,
-  )
+  const verifyAuthTokenService = container.resolve(VerifyAuthTokenService)
 
   const user = await verifyAuthTokenService.execute({
     authorizationHeader: authorization,
