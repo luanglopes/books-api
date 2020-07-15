@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
+import ensureValidation from '@shared/infra/http/routes/ensureValidation'
 import AuthController from '../controllers/AuthController'
 import authValidators from '../validators/auth.validator'
-import ensureValidation from '../../../../../shared/infra/http/routes/ensureValidation'
 
 const authRouter = Router()
 const authController = new AuthController()

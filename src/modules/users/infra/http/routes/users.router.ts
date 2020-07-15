@@ -1,11 +1,11 @@
 import { Router } from 'express'
 
 import EUserRoles from '@modules/users/enums/EUserRoles'
+import ensureValidation from '@shared/infra/http/routes/ensureValidation'
 import UserController from '../controllers/UserController'
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 import ensureHasRole from '../middlewares/ensureHasRole'
 import usersValidators from '../validators/users.validator'
-import ensureValidation from '../../../../../shared/infra/http/routes/ensureValidation'
 
 const usersRouter = Router()
 const userController = new UserController()
