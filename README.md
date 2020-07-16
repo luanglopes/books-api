@@ -56,7 +56,7 @@ O TypeScript adiciona interfaces, enums e tipagem estática ao JavaScript, o que
 
 ### Quais melhorias poderiam ser implementadas?
 
-- [ ] Implementar container de injeção de dependências (ex.: [tsyringe](https://github.com/microsoft/tsyringe));
+- [x] Implementar container de injeção de dependências (ex.: [tsyringe](https://github.com/microsoft/tsyringe));
 - [x] Testes unitários nos serviços (ex.: [Jest](https://jestjs.io/));
 - [ ] Testes de integração na API (ex.: [Jest](https://jestjs.io/) + [supertest](https://github.com/visionmedia/supertest)).
 - [x] Validação de query params, route params e body das requisições (ex.: [Joi](https://github.com/hapijs/joi), [celebrate](https://github.com/arb/celebrate))
