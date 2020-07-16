@@ -1,6 +1,6 @@
 # Books API
 
-Uma API REST para gestão de usuário e livros de uma biblioteca.
+Uma API REST para gestão de usuário e livros.
 
 ## Ambiente
 
